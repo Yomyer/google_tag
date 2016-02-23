@@ -1,0 +1,6 @@
+{
+    "name": "yomyer/google_tag",
+    "description": "Drupal 8 Port of Google Tag Manager module for Drupal with hook_datalayer_alter",
+    "type": "drupal-module",
+    "license": "GPL 2.0+"
+}

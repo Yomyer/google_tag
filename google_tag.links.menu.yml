@@ -1,0 +1,6 @@
+google_tag.settings_form:
+    title: 'Google Tag Manager'
+    parent: system.admin_config_system
+    description: 'Configure the website integration with GTM and the resultant capturing of website analytics.'
+    route_name: google_tag.settings_form
+    weight: -20
