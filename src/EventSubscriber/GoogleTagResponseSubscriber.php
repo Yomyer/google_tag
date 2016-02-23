@@ -128,13 +128,15 @@ class GoogleTagResponseSubscriber implements EventSubscriberInterface
      */
     public function getTag($container_id, $compact = FALSE)
     {
+        if($datalayer = $this->hook_tags()){
+
         // Build script tags.
         $dataLayer = <<<EOS
 <script>
-    {$this->hook_tags()}
+    $datalayer
 </script>
 EOS;
-
+        }
         // Build script tags.
         $noscript = <<<EOS
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=$container_id"
@@ -188,6 +190,8 @@ EOS;
         if (sizeof(\Drupal::moduleHandler()->getImplementations('datalayer_alter')) > 0) {
             $this->dataLayer = \Drupal::moduleHandler()->invokeAll('datalayer_alter', [$this->dataLayer]);
         }
+
+        if(!$this->dataLayer) return '';
 
         return 'dataLayer = ['.json_encode($this->dataLayer).'];';
     }
